@@ -1,0 +1,8 @@
+# Secrets : ne jamais publier
+*.json
+.env
+
+# Fichiers générés automatiquement
+logs/
+__pycache__/
+.ipynb_checkpoints/
