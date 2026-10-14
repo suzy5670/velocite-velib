@@ -29,6 +29,16 @@ def appeler_api(url):
     return pd.DataFrame(reponse.json()["data"]["stations"])
 
 
+def appeler_api(url):
+    """Appelle l'API, vérifie le code HTTP et renvoie les stations en DataFrame."""
+    reponse = requests.get(url, timeout=30)
+    nom_flux = url.split("/")[-1]
+    logging.info(f"Appel API {nom_flux} : code HTTP {reponse.status_code}")
+    if reponse.status_code != 200:
+        raise ValueError(f"Réponse inattendue de l'API ({nom_flux}) : code {reponse.status_code}")
+    return pd.DataFrame(reponse.json()["data"]["stations"])
+
+
 def preparer_stations(df_info):
     """Table stations : infos fixes de chaque station."""
     df_info["accepte_cb"] = df_info["rental_methods"].notna()
