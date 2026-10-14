@@ -1,0 +1,38 @@
+name: Collecte Velib
+
+on:
+  schedule:
+    - cron: "5 * * * *"   # toutes les heures, à HH:05 (heure UTC)
+  workflow_dispatch:       # bouton pour lancer à la main
+
+permissions:
+  contents: read
+  id-token: write          # autorise GitHub à prouver son identité à Google
+
+jobs:
+  collecte:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le code
+        uses: actions/checkout@v4
+
+      - name: Installer Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Installer les bibliothèques
+        run: pip install -r requirements.txt
+
+      - name: Connexion à Google Cloud (sans clé)
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: projects/50689790778/locations/global/workloadIdentityPools/github/providers/github-actions
+          service_account: velib-collecte-15@velocite-velib.iam.gserviceaccount.com
+
+      - name: Lancer la collecte
+        run: python src/collecte.py
+
+      - name: Afficher les logs
+        if: always()
+        run: cat logs/collecte.log
