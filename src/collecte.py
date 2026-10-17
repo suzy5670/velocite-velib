@@ -111,3 +111,87 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+def main():
+    logging.info("Début de la collecte")
+    try:
+        df_stations = preparer_stations(appeler_api(URL_INFO))
+        df_dispo = preparer_disponibilites(appeler_api(URL_STATUS), df_stations)
+        nb_recues = len(df_dispo)
+        df_dispo = retirer_deja_presentes(df_dispo)
+
+        pandas_gbq.to_gbq(df_stations, f"{DATASET}.stations", project_id=PROJET, if_exists="replace")
+        if len(df_dispo) > 0:
+            pandas_gbq.to_gbq(df_dispo, f"{DATASET}.disponibilites", project_id=PROJET, if_exists="append")
+
+        message = f"{nb_recues} lignes reçues, {len(df_dispo)} nouvelles envoyées"
+        logging.info(message)
+        ecrire_journal("OK", len(df_dispo), message)
+    except Exception as erreur:
+        logging.error(f"Échec de la collecte : {erreur}")
+        try:
+            ecrire_journal("ERREUR", 0, str(erreur))
+        except Exception:
+            pass
+        raise
+
+
+if __name__ == "__main__":
+    main()
+
+
+def main():
+    logging.info("Début de la collecte")
+    try:
+        df_stations = preparer_stations(appeler_api(URL_INFO))
+        df_dispo = preparer_disponibilites(appeler_api(URL_STATUS), df_stations)
+        nb_recues = len(df_dispo)
+        df_dispo = retirer_deja_presentes(df_dispo)
+
+        pandas_gbq.to_gbq(df_stations, f"{DATASET}.stations", project_id=PROJET, if_exists="replace")
+        if len(df_dispo) > 0:
+            pandas_gbq.to_gbq(df_dispo, f"{DATASET}.disponibilites", project_id=PROJET, if_exists="append")
+
+        message = f"{nb_recues} lignes reçues, {len(df_dispo)} nouvelles envoyées"
+        logging.info(message)
+        ecrire_journal("OK", len(df_dispo), message)
+    except Exception as erreur:
+        logging.error(f"Échec de la collecte : {erreur}")
+        try:
+            ecrire_journal("ERREUR", 0, str(erreur))
+        except Exception:
+            pass
+        raise
+
+
+if __name__ == "__main__":
+    main()
+
+
+def main():
+    logging.info("Début de la collecte")
+    try:
+        df_stations = preparer_stations(appeler_api(URL_INFO))
+        df_dispo = preparer_disponibilites(appeler_api(URL_STATUS), df_stations)
+        nb_recues = len(df_dispo)
+        df_dispo = retirer_deja_presentes(df_dispo)
+
+        pandas_gbq.to_gbq(df_stations, f"{DATASET}.stations", project_id=PROJET, if_exists="replace")
+        if len(df_dispo) > 0:
+            pandas_gbq.to_gbq(df_dispo, f"{DATASET}.disponibilites", project_id=PROJET, if_exists="append")
+
+        message = f"{nb_recues} lignes reçues, {len(df_dispo)} nouvelles envoyées"
+        logging.info(message)
+        ecrire_journal("OK", len(df_dispo), message)
+    except Exception as erreur:
+        logging.error(f"Échec de la collecte : {erreur}")
+        try:
+            ecrire_journal("ERREUR", 0, str(erreur))
+        except Exception:
+            pass
+        raise
+
+
+if __name__ == "__main__":
+    main()
