@@ -105,19 +105,7 @@ Lien : COLLE_ICI_LE_LIEN_DU_DASHBOARD
 
 **Conclusion :** en moyenne 6,9 % des stations sont vides et 3,2 % pleines, avec des pics à 11 h et 18 h. Les zones les plus touchées sont Paris 20 et Paris 18 (quartiers en hauteur). Recommandation : rééquilibrer avant 9 h et 17 h, du centre vers les collines.
 
-## 10. Preuves d'exécution
-
-| Exécutions GitHub Actions | Logs d'une exécution |
-|---|---|
-| ![GitHub Actions](preuves/github_actions.png) | ![Logs](preuves/log_execution.png) |
-
-| Journal dans BigQuery | Contrôle des doublons |
-|---|---|
-| ![Journal](preuves/journal_bigquery.png) | ![Doublons](preuves/controle_doublons.png) |
-
-![Dashboard](preuves/dashboard.png)
-
-## 11. Limites et pistes d'amélioration
+## 10. Limites et pistes d'amélioration
 - L'API indique les vélos présents, pas les locations : les flux par zone sont **estimés**.
 - Les vélos ne sont pas suivis individuellement (impossible de mesurer les vélos perdus).
 - Une dizaine de stations fermées à la location (`is_renting = 0`) augmentent légèrement le taux de stations vides → à exclure du calcul.
