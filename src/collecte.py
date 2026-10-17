@@ -23,13 +23,6 @@ logging.basicConfig(
 
 
 def appeler_api(url):
-    """Appelle l'API et renvoie les stations sous forme de DataFrame."""
-    reponse = requests.get(url, timeout=30)
-    reponse.raise_for_status()
-    return pd.DataFrame(reponse.json()["data"]["stations"])
-
-
-def appeler_api(url):
     """Appelle l'API, vérifie le code HTTP et renvoie les stations en DataFrame."""
     reponse = requests.get(url, timeout=30)
     nom_flux = url.split("/")[-1]
