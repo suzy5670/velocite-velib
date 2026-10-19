@@ -112,7 +112,7 @@ Lien : COLLE_ICI_LE_LIEN_DU_DASHBOARD
 - Bac à sable BigQuery : tables conservées 60 jours, pas de requêtes `INSERT` / `MERGE` (anti-doublons géré en Python).
 - Pistes : collecte sur plusieurs semaines (semaine / week-end), croisement avec la météo, alertes automatiques.
 
-## 12. Structure du dépôt
+## 11. Structure du dépôt
 ```
 ├── .github/workflows/collecte.yml   # automatisation horaire
 ├── src/collecte.py                  # script de collecte
@@ -122,3 +122,10 @@ Lien : COLLE_ICI_LE_LIEN_DU_DASHBOARD
 ├── requirements.txt
 └── .gitignore
 ```
+## 12 liens api 
+https://velib-metropole-opendata.smovengo.cloud/opendata/Velib_Metropole/station_information.json
+https://www.velib-metropole.fr/service
+
+https://www.velib-metropole.fr/donnees-open-data-gbfs-du-service-velib-metropole
+
+https://console.cloud.google.com/bigquery?organizationId=0&project=velocite-velib&ws=!1m0
